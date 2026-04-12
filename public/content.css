@@ -1,0 +1,10 @@
+/* Base styles for WhatsApp Privacy Pro */
+
+.privacy-pro-blurred {
+    filter: blur(10px);
+    transition: filter 0.3s ease;
+}
+
+.privacy-pro-blurred:hover {
+    filter: blur(0) !important;
+}

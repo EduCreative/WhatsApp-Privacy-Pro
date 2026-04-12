@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "WhatsApp Privacy Pro",
+  "version": "1.0.0",
+  "description": "Privacy tools for WhatsApp Web: Blur chats, Panic Mode, and Incognito Read.",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "commands": {
+    "panic-mode": {
+      "suggested_key": {
+        "default": "Alt+Q"
+      },
+      "description": "Activate Panic Mode"
+    }
+  },
+  "declarative_net_request": {
+    "rule_resources": [{
+      "id": "ruleset_1",
+      "enabled": true,
+      "path": "rules.json"
+    }]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "name": "WhatsApp Privacy Pro",
+  "description": "A comprehensive privacy extension for WhatsApp Web featuring blurring, panic mode, and incognito reading.",
+  "requestFramePermissions": []
+}
