@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Download, Terminal, Settings, Sun, Moon, Info, Github, ExternalLink, AlertTriangle, Keyboard, FileCode, ChevronRight, RefreshCw } from 'lucide-react';
+import { Shield, Download, Terminal, Settings, Sun, Moon, Info, Github, ExternalLink, AlertTriangle, Keyboard, FileCode, ChevronRight, RefreshCw, Ghost } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import Popup from './popup/Popup';
 import WhatsAppDemo from './components/WhatsAppDemo';
@@ -185,6 +185,12 @@ export default function App() {
                       <span className="text-[11px] font-mono uppercase tracking-widest">WhatsApp Web Simulation // web.whatsapp.com</span>
                     </div>
                     <div className="flex items-center gap-2">
+                      {settings.incognitoRead && (
+                        <div className="flex items-center gap-1 px-2 py-0.5 bg-zinc-800 dark:bg-zinc-200 text-zinc-400 dark:text-zinc-600 text-[9px] font-mono uppercase tracking-widest border border-zinc-700 dark:border-zinc-300">
+                          <Ghost className="w-3 h-3" />
+                          Stealth
+                        </div>
+                      )}
                       <div className="px-2 py-0.5 bg-emerald-500 text-black text-[9px] font-bold uppercase">Safe</div>
                     </div>
                   </div>

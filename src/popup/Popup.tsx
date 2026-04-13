@@ -138,6 +138,18 @@ export default function Popup({ demoSettings, onDemoUpdate }: PopupProps) {
             active={settings.blurPreviews} 
             onClick={() => updateSetting('blurPreviews', !settings.blurPreviews)} 
           />
+          <ToggleButton 
+            icon={<Ghost className="w-4 h-4" />} 
+            label="Incognito" 
+            active={settings.incognitoRead} 
+            onClick={() => updateSetting('incognitoRead', !settings.incognitoRead)} 
+          />
+          <ToggleButton 
+            icon={<Zap className="w-4 h-4" />} 
+            label="Panic" 
+            active={settings.panicMode} 
+            onClick={() => updateSetting('panicMode', !settings.panicMode)} 
+          />
         </div>
 
         {/* Intensity Slider */}
@@ -153,24 +165,6 @@ export default function Popup({ demoSettings, onDemoUpdate }: PopupProps) {
             value={settings.blurIntensity} 
             onChange={(e) => updateSetting('blurIntensity', parseInt(e.target.value))}
             className="w-full h-1 bg-zinc-300 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
-          />
-        </div>
-
-        {/* Advanced Features */}
-        <div className="space-y-2">
-          <FeatureRow 
-            icon={<Ghost className="w-4 h-4" />} 
-            label="Incognito Read" 
-            description="Hide blue ticks & last seen"
-            active={settings.incognitoRead}
-            onClick={() => updateSetting('incognitoRead', !settings.incognitoRead)}
-          />
-          <FeatureRow 
-            icon={<Zap className="w-4 h-4" />} 
-            label="Panic Mode" 
-            description="Press Alt + Q to hide tab"
-            active={settings.panicMode}
-            onClick={() => updateSetting('panicMode', !settings.panicMode)}
           />
         </div>
 
