@@ -34,23 +34,23 @@ export default function WhatsAppDemo({ settings }: WhatsAppDemoProps) {
   const blurStyle = { '--blur-intensity': `${settings.blurIntensity}px` } as React.CSSProperties;
 
   return (
-    <div className="flex h-[600px] w-full max-w-5xl bg-[#f0f2f5] rounded-xl overflow-hidden shadow-2xl border border-zinc-200" style={blurStyle}>
+    <div className="flex h-[600px] w-full max-w-5xl bg-[#f0f2f5] dark:bg-[#0b141a] rounded-xl overflow-hidden shadow-2xl border border-zinc-200 dark:border-zinc-800" style={blurStyle}>
       {/* Sidebar */}
-      <div className="w-[350px] bg-white border-r border-zinc-200 flex flex-col">
-        <header className="h-[60px] bg-[#f0f2f5] px-4 flex items-center justify-between border-b border-zinc-200">
-          <div className="w-10 h-10 rounded-full bg-zinc-300 overflow-hidden">
+      <div className="w-[350px] bg-white dark:bg-[#111b21] border-r border-zinc-200 dark:border-zinc-800 flex flex-col">
+        <header className="h-[60px] bg-[#f0f2f5] dark:bg-[#202c33] px-4 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800">
+          <div className="w-10 h-10 rounded-full bg-zinc-300 dark:bg-zinc-700 overflow-hidden">
             <img src="https://picsum.photos/seed/me/100/100" alt="Me" referrerPolicy="no-referrer" />
           </div>
-          <div className="flex gap-4 text-zinc-500">
+          <div className="flex gap-4 text-zinc-500 dark:text-zinc-400">
             <MessageSquare className="w-5 h-5" />
             <MoreVertical className="w-5 h-5" />
           </div>
         </header>
 
         <div className="p-2">
-          <div className="bg-[#f0f2f5] rounded-lg flex items-center px-3 py-1.5 gap-4">
-            <Search className="w-4 h-4 text-zinc-500" />
-            <input type="text" placeholder="Search or start new chat" className="bg-transparent border-none outline-none text-sm w-full" />
+          <div className="bg-[#f0f2f5] dark:bg-[#202c33] rounded-lg flex items-center px-3 py-1.5 gap-4">
+            <Search className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
+            <input type="text" placeholder="Search or start new chat" className="bg-transparent border-none outline-none text-sm w-full text-zinc-800 dark:text-zinc-200" />
           </div>
         </div>
 
@@ -59,7 +59,7 @@ export default function WhatsAppDemo({ settings }: WhatsAppDemoProps) {
             <div 
               key={chat.id}
               onClick={() => setActiveChat(chat.id)}
-              className={`flex items-center px-3 py-3 gap-3 cursor-pointer hover:bg-[#f5f6f6] transition-colors ${activeChat === chat.id ? 'bg-[#f0f2f5]' : ''}`}
+              className={`flex items-center px-3 py-3 gap-3 cursor-pointer hover:bg-[#f5f6f6] dark:hover:bg-[#202c33] transition-colors ${activeChat === chat.id ? 'bg-[#f0f2f5] dark:bg-[#2a3942]' : ''}`}
             >
               <div className="relative">
                 <div 
@@ -68,17 +68,17 @@ export default function WhatsAppDemo({ settings }: WhatsAppDemoProps) {
                   <img src={chat.photo} alt={chat.name} referrerPolicy="no-referrer" />
                 </div>
               </div>
-              <div className="flex-1 border-b border-zinc-100 pb-2">
+              <div className="flex-1 border-b border-zinc-100 dark:border-zinc-800 pb-2">
                 <div className="flex justify-between items-center mb-1">
                   <h3 
-                    className={`font-medium text-sm transition-all duration-300 ${settings.blurNames || (chat.private && settings.privateContacts.includes(chat.name)) ? 'blur-dynamic' : ''}`}
+                    className={`font-medium text-sm text-zinc-800 dark:text-zinc-200 transition-all duration-300 ${settings.blurNames || (chat.private && settings.privateContacts.includes(chat.name)) ? 'blur-dynamic' : ''}`}
                   >
                     {chat.name}
                   </h3>
-                  <span className="text-[10px] text-zinc-500">{chat.time}</span>
+                  <span className="text-[10px] text-zinc-500 dark:text-zinc-400">{chat.time}</span>
                 </div>
                 <p 
-                  className={`text-xs text-zinc-500 truncate transition-all duration-300 ${settings.blurPreviews ? 'blur-dynamic' : ''}`}
+                  className={`text-xs text-zinc-500 dark:text-zinc-400 truncate transition-all duration-300 ${settings.blurPreviews ? 'blur-dynamic' : ''}`}
                 >
                   {chat.lastMsg}
                 </p>
@@ -89,11 +89,11 @@ export default function WhatsAppDemo({ settings }: WhatsAppDemoProps) {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 flex flex-col bg-[#efeae2] relative">
+      <div className="flex-1 flex flex-col bg-[#efeae2] dark:bg-[#0b141a] relative">
         {/* Chat Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.06] pointer-events-none" style={{ backgroundImage: 'url("https://wweb.dev/assets/whatsapp-chat-bg.png")' }} />
+        <div className="absolute inset-0 opacity-[0.06] dark:opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("https://wweb.dev/assets/whatsapp-chat-bg.png")' }} />
 
-        <header className="h-[60px] bg-[#f0f2f5] px-4 flex items-center justify-between border-b border-zinc-200 z-10">
+        <header className="h-[60px] bg-[#f0f2f5] dark:bg-[#202c33] px-4 flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 z-10">
           <div className="flex items-center gap-3">
             <div 
               className={`w-10 h-10 rounded-full overflow-hidden ${settings.blurPhotos ? 'blur-dynamic' : ''}`}
@@ -102,14 +102,14 @@ export default function WhatsAppDemo({ settings }: WhatsAppDemoProps) {
             </div>
             <div>
               <h3 
-                className={`font-medium text-sm ${settings.blurNames ? 'blur-dynamic' : ''}`}
+                className={`font-medium text-sm text-zinc-800 dark:text-zinc-200 ${settings.blurNames ? 'blur-dynamic' : ''}`}
               >
                 {chats[activeChat].name}
               </h3>
-              <p className="text-[10px] text-zinc-500">online</p>
+              <p className="text-[10px] text-zinc-500 dark:text-zinc-400">online</p>
             </div>
           </div>
-          <div className="flex gap-6 text-zinc-500">
+          <div className="flex gap-6 text-zinc-500 dark:text-zinc-400">
             <Video className="w-5 h-5" />
             <Phone className="w-5 h-5" />
             <Search className="w-5 h-5" />
@@ -121,18 +121,18 @@ export default function WhatsAppDemo({ settings }: WhatsAppDemoProps) {
           {messages.map((msg) => (
             <div key={msg.id} className={`flex ${msg.sent ? 'justify-end' : 'justify-start'}`}>
               <div 
-                className={`max-w-[60%] p-2 rounded-lg shadow-sm relative group transition-all duration-300 ${msg.sent ? 'bg-[#d9fdd3]' : 'bg-white'}`}
+                className={`max-w-[60%] p-2 rounded-lg shadow-sm relative group transition-all duration-300 ${msg.sent ? 'bg-[#d9fdd3] dark:bg-[#005c4b]' : 'bg-white dark:bg-[#202c33]'}`}
               >
                 <p 
-                  className={`text-sm text-zinc-800 mb-1 transition-all duration-300 group-hover:filter-none ${settings.blurMessages ? 'blur-dynamic' : ''}`}
+                  className={`text-sm text-zinc-800 dark:text-zinc-200 mb-1 transition-all duration-300 group-hover:filter-none ${settings.blurMessages ? 'blur-dynamic' : ''}`}
                 >
                   {msg.text}
                 </p>
                 <div className="flex items-center justify-end gap-1">
-                  <span className="text-[9px] text-zinc-500">{msg.time}</span>
+                  <span className="text-[9px] text-zinc-500 dark:text-zinc-400">{msg.time}</span>
                   {msg.sent && (
                     <CheckCheck 
-                      className={`w-3 h-3 transition-colors ${settings.incognitoRead ? 'text-zinc-400' : 'text-[#53bdeb]'}`} 
+                      className={`w-3 h-3 transition-colors ${settings.incognitoRead ? 'text-zinc-400 dark:text-zinc-500' : 'text-[#53bdeb]'}`} 
                     />
                   )}
                 </div>
@@ -141,13 +141,13 @@ export default function WhatsAppDemo({ settings }: WhatsAppDemoProps) {
           ))}
         </div>
 
-        <footer className="h-[60px] bg-[#f0f2f5] px-4 flex items-center gap-4 z-10">
-          <Smile className="w-6 h-6 text-zinc-500" />
-          <Paperclip className="w-6 h-6 text-zinc-500" />
-          <div className="flex-1 bg-white rounded-lg px-4 py-2">
-            <input type="text" placeholder="Type a message" className="w-full text-sm outline-none" />
+        <footer className="h-[60px] bg-[#f0f2f5] dark:bg-[#202c33] px-4 flex items-center gap-4 z-10">
+          <Smile className="w-6 h-6 text-zinc-500 dark:text-zinc-400" />
+          <Paperclip className="w-6 h-6 text-zinc-500 dark:text-zinc-400" />
+          <div className="flex-1 bg-white dark:bg-[#2a3942] rounded-lg px-4 py-2">
+            <input type="text" placeholder="Type a message" className="w-full text-sm outline-none bg-transparent text-zinc-800 dark:text-zinc-200" />
           </div>
-          <Mic className="w-6 h-6 text-zinc-500" />
+          <Mic className="w-6 h-6 text-zinc-500 dark:text-zinc-400" />
         </footer>
       </div>
     </div>

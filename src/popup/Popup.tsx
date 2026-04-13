@@ -94,8 +94,8 @@ export default function Popup({ demoSettings, onDemoUpdate }: PopupProps) {
   };
 
   return (
-    <div className="p-4 bg-zinc-950 text-zinc-100 min-h-[400px] border border-zinc-800 rounded-lg shadow-2xl">
-      <header className="flex items-center justify-between mb-6 pb-4 border-b border-zinc-800">
+    <div className="p-4 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 min-h-[400px] border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-2xl transition-colors duration-300">
+      <header className="flex items-center justify-between mb-6 pb-4 border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center shadow-lg shadow-emerald-900/20">
             <Shield className="w-5 h-5 text-white" />
@@ -141,7 +141,7 @@ export default function Popup({ demoSettings, onDemoUpdate }: PopupProps) {
         </div>
 
         {/* Intensity Slider */}
-        <div className="p-3 bg-zinc-900/50 rounded-lg border border-zinc-800">
+        <div className="p-3 bg-zinc-100 dark:bg-zinc-900/50 rounded-lg border border-zinc-200 dark:border-zinc-800">
           <div className="flex items-center justify-between mb-2">
             <label className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Blur Intensity</label>
             <span className="text-[10px] font-mono text-emerald-500">{settings.blurIntensity}px</span>
@@ -152,7 +152,7 @@ export default function Popup({ demoSettings, onDemoUpdate }: PopupProps) {
             max="30" 
             value={settings.blurIntensity} 
             onChange={(e) => updateSetting('blurIntensity', parseInt(e.target.value))}
-            className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+            className="w-full h-1 bg-zinc-300 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-emerald-500"
           />
         </div>
 
@@ -178,21 +178,21 @@ export default function Popup({ demoSettings, onDemoUpdate }: PopupProps) {
         <div className="pt-4 flex gap-2">
           <button 
             onClick={blurAll}
-            className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-emerald-600 hover:bg-emerald-500 border border-emerald-500/50 rounded-md text-[11px] font-bold transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-emerald-600 hover:bg-emerald-500 border border-emerald-500/50 rounded-md text-[11px] font-bold text-white transition-colors"
           >
             Blur All
           </button>
           <button 
             onClick={clearAllBlur}
-            className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-md text-[11px] font-medium transition-colors"
+            className="flex-1 flex items-center justify-center gap-2 py-2 px-3 bg-zinc-100 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 rounded-md text-[11px] font-medium transition-colors"
           >
             Clear All
           </button>
         </div>
       </div>
 
-      <footer className="mt-6 pt-4 border-t border-zinc-900 text-center">
-        <p className="text-[9px] font-mono text-zinc-600 uppercase tracking-tighter">
+      <footer className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-900 text-center">
+        <p className="text-[9px] font-mono text-zinc-400 dark:text-zinc-600 uppercase tracking-tighter">
           v1.0.0 // Secure Connection Established
         </p>
       </footer>
@@ -207,7 +207,7 @@ function ToggleButton({ icon, label, active, onClick }: { icon: React.ReactNode,
       className={`flex flex-col items-center justify-center gap-2 p-3 rounded-lg border transition-all duration-200 ${
         active 
           ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-500' 
-          : 'bg-zinc-900/50 border-zinc-800 text-zinc-500 hover:border-zinc-700'
+          : 'bg-zinc-100 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 text-zinc-400 dark:text-zinc-500 hover:border-zinc-300 dark:hover:border-zinc-700'
       }`}
     >
       {icon}
@@ -225,11 +225,11 @@ function FeatureRow({ icon, label, description, active, onClick, disabled = fals
       } ${
         active 
           ? 'bg-emerald-500/5 border-emerald-500/20' 
-          : 'bg-zinc-900/30 border-zinc-800/50 hover:border-zinc-700'
+          : 'bg-zinc-50 dark:bg-zinc-900/30 border-zinc-100 dark:border-zinc-800/50 hover:border-zinc-200 dark:hover:border-zinc-700'
       }`}
     >
       <div className="flex items-center gap-3">
-        <div className={`p-1.5 rounded-md ${active ? 'bg-emerald-500/20 text-emerald-500' : 'bg-zinc-800 text-zinc-500'}`}>
+        <div className={`p-1.5 rounded-md ${active ? 'bg-emerald-500/20 text-emerald-500' : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-500'}`}>
           {icon}
         </div>
         <div>
@@ -238,7 +238,7 @@ function FeatureRow({ icon, label, description, active, onClick, disabled = fals
         </div>
       </div>
       {!disabled && (
-        <div className={`w-8 h-4 rounded-full p-0.5 transition-colors ${active ? 'bg-emerald-500' : 'bg-zinc-700'}`}>
+        <div className={`w-8 h-4 rounded-full p-0.5 transition-colors ${active ? 'bg-emerald-500' : 'bg-zinc-300 dark:bg-zinc-700'}`}>
           <motion.div 
             animate={{ x: active ? 16 : 0 }}
             className="w-3 h-3 bg-white rounded-full shadow-sm" 

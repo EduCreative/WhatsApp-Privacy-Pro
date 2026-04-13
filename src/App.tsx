@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Download, Terminal, Settings, Eye, Info, Github, ExternalLink, AlertTriangle, Keyboard, FileCode, ChevronRight, RefreshCw } from 'lucide-react';
+import { Shield, Download, Terminal, Settings, Sun, Moon, Info, Github, ExternalLink, AlertTriangle, Keyboard, FileCode, ChevronRight, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import Popup from './popup/Popup';
 import WhatsAppDemo from './components/WhatsAppDemo';
@@ -106,7 +106,7 @@ export default function App() {
             className="p-2 hover:bg-[#141414] dark:hover:bg-[#e4e3e0] hover:text-[#E4E3E0] dark:hover:text-[#141414] transition-colors rounded-sm"
             title="Toggle Dark Mode"
           >
-            {isDarkMode ? <Eye className="w-5 h-5" /> : <Shield className="w-5 h-5" />}
+            {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </button>
           <a 
             href="https://github.com/EduCreative/WhatsApp-Privacy-Pro" 
