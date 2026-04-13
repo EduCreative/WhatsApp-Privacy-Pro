@@ -21,6 +21,16 @@ export default function App() {
   const [selectedFile, setSelectedFile] = useState<string>(Object.keys(extensionFiles)[0]);
   const [panicActive, setPanicActive] = useState(false);
 
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.altKey && e.key === 'q') {
@@ -59,11 +69,11 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#E4E3E0] text-[#141414] font-sans selection:bg-[#141414] selection:text-[#E4E3E0]">
+    <div className="min-h-screen bg-[#E4E3E0] dark:bg-[#0a0a0a] text-[#141414] dark:text-[#e4e3e0] font-sans selection:bg-[#141414] dark:selection:bg-[#e4e3e0] selection:text-[#E4E3E0] dark:selection:text-[#141414] transition-colors duration-300">
       {/* Top Navigation */}
-      <nav className="border-b border-[#141414] px-6 py-4 flex items-center justify-between bg-white/50 backdrop-blur-sm sticky top-0 z-50">
+      <nav className="border-b border-[#141414] dark:border-[#e4e3e0]/20 px-6 py-4 flex items-center justify-between bg-white/50 dark:bg-black/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-[#141414] text-[#E4E3E0] rounded-xl flex items-center justify-center shadow-lg shadow-black/10">
+          <div className="w-10 h-10 bg-[#141414] dark:bg-[#e4e3e0] text-[#E4E3E0] dark:text-[#141414] rounded-xl flex items-center justify-center shadow-lg shadow-black/10">
             <Shield className="w-6 h-6" />
           </div>
           <div>
@@ -90,10 +100,22 @@ export default function App() {
           >
             Source Code
           </button>
-          <div className="h-4 w-px bg-[#141414]/20" />
-          <button className="p-2 hover:bg-[#141414] hover:text-[#E4E3E0] transition-colors rounded-sm">
-            <Github className="w-5 h-5" />
+          <div className="h-4 w-px bg-[#141414]/20 dark:bg-[#e4e3e0]/20" />
+          <button 
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            className="p-2 hover:bg-[#141414] dark:hover:bg-[#e4e3e0] hover:text-[#E4E3E0] dark:hover:text-[#141414] transition-colors rounded-sm"
+            title="Toggle Dark Mode"
+          >
+            {isDarkMode ? <Eye className="w-5 h-5" /> : <Shield className="w-5 h-5" />}
           </button>
+          <a 
+            href="https://github.com/EduCreative/WhatsApp-Privacy-Pro" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="p-2 hover:bg-[#141414] dark:hover:bg-[#e4e3e0] hover:text-[#E4E3E0] dark:hover:text-[#141414] transition-colors rounded-sm"
+          >
+            <Github className="w-5 h-5" />
+          </a>
         </div>
       </nav>
 
@@ -109,8 +131,8 @@ export default function App() {
             >
               {/* Left Column: Extension Popup Preview */}
               <div className="space-y-6">
-                <div className="bg-white border border-[#141414] p-1 shadow-[4px_4px_0px_0px_#141414]">
-                  <div className="bg-[#141414] text-[#E4E3E0] px-3 py-1.5 flex items-center justify-between">
+                <div className="bg-white dark:bg-zinc-900 border border-[#141414] dark:border-[#e4e3e0]/20 p-1 shadow-[4px_4px_0px_0px_#141414] dark:shadow-[4px_4px_0px_0px_#e4e3e0]">
+                  <div className="bg-[#141414] dark:bg-[#e4e3e0] text-[#E4E3E0] dark:text-[#141414] px-3 py-1.5 flex items-center justify-between">
                     <span className="text-[10px] font-mono uppercase tracking-widest">Extension Popup</span>
                     <div className="flex gap-1">
                       <div className="w-2 h-2 rounded-full bg-red-500" />
@@ -129,7 +151,7 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="bg-white border border-[#141414] p-6 space-y-4">
+                <div className="bg-white dark:bg-zinc-900 border border-[#141414] dark:border-[#e4e3e0]/20 p-6 space-y-4">
                   <h3 className="font-bold text-xs uppercase tracking-widest flex items-center gap-2">
                     <Info className="w-4 h-4" />
                     Demo Instructions
@@ -139,15 +161,15 @@ export default function App() {
                   </p>
                   <ul className="space-y-2 text-xs font-mono">
                     <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-[#141414] rounded-full" />
+                      <div className="w-1.5 h-1.5 bg-[#141414] dark:bg-[#e4e3e0] rounded-full" />
                       Hover over blurred messages to reveal
                     </li>
                     <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-[#141414] rounded-full" />
+                      <div className="w-1.5 h-1.5 bg-[#141414] dark:bg-[#e4e3e0] rounded-full" />
                       Toggle 'Names' to hide identities
                     </li>
                     <li className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 bg-[#141414] rounded-full" />
+                      <div className="w-1.5 h-1.5 bg-[#141414] dark:bg-[#e4e3e0] rounded-full" />
                       Adjust intensity for stronger privacy
                     </li>
                   </ul>
@@ -156,8 +178,8 @@ export default function App() {
 
               {/* Right Column: WhatsApp Simulation */}
               <div className="space-y-6">
-                <div className="bg-white border border-[#141414] p-1 shadow-[8px_8px_0px_0px_#141414]">
-                  <div className="bg-[#141414] text-[#E4E3E0] px-4 py-2 flex items-center justify-between">
+                <div className="bg-white dark:bg-zinc-900 border border-[#141414] dark:border-[#e4e3e0]/20 p-1 shadow-[8px_8px_0px_0px_#141414] dark:shadow-[8px_8px_0px_0px_#e4e3e0]">
+                  <div className="bg-[#141414] dark:bg-[#e4e3e0] text-[#E4E3E0] dark:text-[#141414] px-4 py-2 flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <Terminal className="w-4 h-4" />
                       <span className="text-[11px] font-mono uppercase tracking-widest">WhatsApp Web Simulation // web.whatsapp.com</span>
@@ -166,7 +188,7 @@ export default function App() {
                       <div className="px-2 py-0.5 bg-emerald-500 text-black text-[9px] font-bold uppercase">Safe</div>
                     </div>
                   </div>
-                  <div className="bg-white">
+                  <div className="bg-white dark:bg-zinc-800">
                     <WhatsAppDemo settings={settings} />
                   </div>
                 </div>
@@ -198,7 +220,7 @@ export default function App() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="max-w-3xl mx-auto bg-white border border-[#141414] p-12 shadow-[12px_12px_0px_0px_#141414]"
+              className="max-w-3xl mx-auto bg-white dark:bg-zinc-900 border border-[#141414] dark:border-[#e4e3e0]/20 p-12 shadow-[12px_12px_0px_0px_#141414] dark:shadow-[12px_12px_0px_0px_#e4e3e0]"
             >
               <h2 className="text-4xl font-bold uppercase tracking-tighter mb-8">Installation Guide</h2>
               <div className="space-y-8">
@@ -207,14 +229,14 @@ export default function App() {
                 <Step number="03" title="Enable Developer Mode" desc="Open Chrome and navigate to chrome://extensions. Toggle 'Developer mode' in the top right corner." />
                 <Step number="04" title="Load Unpacked" desc="Click 'Load unpacked' and select the folder you just extracted." />
               </div>
-              <div className="mt-12 p-6 bg-[#141414] text-[#E4E3E0] flex items-center justify-between">
+              <div className="mt-12 p-6 bg-[#141414] dark:bg-[#e4e3e0] text-[#E4E3E0] dark:text-[#141414] flex items-center justify-between">
                 <div>
                   <p className="text-xs font-mono uppercase tracking-widest opacity-50 mb-1">Ready to secure your chats?</p>
                   <p className="font-bold uppercase tracking-tight">Download Extension Package (.zip)</p>
                 </div>
                 <button 
                   onClick={handleDownload}
-                  className="bg-[#E4E3E0] text-[#141414] px-6 py-3 font-bold uppercase text-xs tracking-widest hover:bg-white transition-colors"
+                  className="bg-[#E4E3E0] dark:bg-[#141414] text-[#141414] dark:text-[#E4E3E0] px-6 py-3 font-bold uppercase text-xs tracking-widest hover:bg-white dark:hover:bg-black transition-colors"
                 >
                   Download Now
                 </button>
@@ -277,16 +299,20 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      <footer className="mt-20 border-t border-[#141414] p-12 bg-white">
+      <footer className="mt-20 border-t border-[#141414] dark:border-[#e4e3e0]/20 p-12 bg-white dark:bg-zinc-900">
         <div className="max-w-[1400px] mx-auto grid grid-cols-4 gap-12">
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <Shield className="w-6 h-6" />
               <h2 className="font-bold text-xl uppercase tracking-tighter">Privacy Pro</h2>
             </div>
-            <p className="text-sm opacity-60 leading-relaxed max-w-md">
+            <p className="text-sm opacity-60 leading-relaxed max-w-md mb-4">
               A professional-grade privacy toolkit for WhatsApp Web. Built for security-conscious users who value their digital boundaries.
             </p>
+            <div className="space-y-1 text-xs font-mono uppercase tracking-widest opacity-50">
+              <p>Designer: <span className="text-[#141414] dark:text-[#e4e3e0] font-bold">Masroor Khan</span></p>
+              <p>Suggestions: <a href="https://wa.me/923331306603" className="text-[#00a884] font-bold hover:underline">+92 333 1306603</a></p>
+            </div>
           </div>
           <div>
             <h4 className="font-bold text-xs uppercase tracking-widest mb-6">Resources</h4>
@@ -297,15 +323,32 @@ export default function App() {
             </ul>
           </div>
           <div>
-            <h4 className="font-bold text-xs uppercase tracking-widest mb-6">Legal</h4>
+            <h4 className="font-bold text-xs uppercase tracking-widest mb-6">Connect</h4>
             <ul className="space-y-3 text-sm opacity-60">
-              <li className="hover:opacity-100 cursor-pointer transition-opacity">Privacy Policy</li>
-              <li className="hover:opacity-100 cursor-pointer transition-opacity">Terms of Service</li>
-              <li className="hover:opacity-100 cursor-pointer transition-opacity">Cookie Policy</li>
+              <li>
+                <a 
+                  href="https://github.com/EduCreative/WhatsApp-Privacy-Pro" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:opacity-100 transition-opacity"
+                >
+                  <Github className="w-4 h-4" /> GitHub Repository
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://wa.me/923331306603" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:opacity-100 transition-opacity"
+                >
+                  <ExternalLink className="w-4 h-4" /> WhatsApp Support
+                </a>
+              </li>
             </ul>
           </div>
         </div>
-        <div className="max-w-[1400px] mx-auto mt-20 pt-8 border-t border-[#141414]/10 flex justify-between items-center text-[10px] font-mono uppercase tracking-widest opacity-40">
+        <div className="max-w-[1400px] mx-auto mt-20 pt-8 border-t border-[#141414]/10 dark:border-[#e4e3e0]/10 flex justify-between items-center text-[10px] font-mono uppercase tracking-widest opacity-40">
           <p>© 2026 Privacy Pro Labs // All Rights Reserved</p>
           <p>Designed for Digital Sovereignty</p>
         </div>
@@ -316,8 +359,8 @@ export default function App() {
 
 function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
   return (
-    <div className="bg-white border border-[#141414] p-6 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[4px_4px_0px_0px_#141414] transition-all cursor-default">
-      <div className="mb-4 text-[#141414]">{icon}</div>
+    <div className="bg-white dark:bg-zinc-900 border border-[#141414] dark:border-[#e4e3e0]/20 p-6 hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-[4px_4px_0px_0px_#141414] dark:hover:shadow-[4px_4px_0px_0px_#e4e3e0] transition-all cursor-default">
+      <div className="mb-4 text-[#141414] dark:text-[#e4e3e0]">{icon}</div>
       <h4 className="font-bold text-xs uppercase tracking-widest mb-2">{title}</h4>
       <p className="text-xs opacity-60 leading-relaxed">{desc}</p>
     </div>
@@ -327,7 +370,7 @@ function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: stri
 function Step({ number, title, desc }: { number: string, title: string, desc: string }) {
   return (
     <div className="flex gap-8 group">
-      <span className="text-5xl font-bold text-[#141414]/10 group-hover:text-[#141414] transition-colors duration-500">{number}</span>
+      <span className="text-5xl font-bold text-[#141414]/10 dark:text-[#e4e3e0]/10 group-hover:text-[#141414] dark:group-hover:text-[#e4e3e0] transition-colors duration-500">{number}</span>
       <div>
         <h4 className="font-bold text-sm uppercase tracking-widest mb-2">{title}</h4>
         <p className="text-sm opacity-60 leading-relaxed max-w-md">{desc}</p>
